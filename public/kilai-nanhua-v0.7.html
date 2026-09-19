@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>奇萊南華 9/20–22｜引導提問時間軸</title>
+<style>
+:root{
+  --fog:#F2F5F3; --paper:#FFFFFF; --slate:#1D282C; --mute:#5A676B; --line:#C9D2CE;
+  --bamboo:#4F6B22; --bamboo-soft:#E6EDD8;
+  --ridge:#27566D; --ridge-soft:#DDE9EF;
+  --ochre:#8A6A0A; --ochre-soft:#F4EBC8;
+  --plum:#6A4C7D; --plum-soft:#ECE3F1;
+  --stop:#B3261E; --stop-soft:#FBE9E7;
+  --serif:"Noto Serif TC","Songti TC","PMingLiU","Source Han Serif TC",serif;
+  --sans:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Heiti TC",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+ :root{--fog:#12191C;--paper:#1A2327;--slate:#E8EEEB;--mute:#9DAAAD;--line:#34434A;
+  --bamboo:#A9C76A;--bamboo-soft:#26331A;--ridge:#8EC0D8;--ridge-soft:#182B35;
+  --ochre:#E0C056;--ochre-soft:#332B10;--plum:#C6A6DA;--plum-soft:#2A2033;--stop:#FF8A80;--stop-soft:#3A1A18;}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:4.2rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--fog);color:var(--slate);font-family:var(--sans);font-size:17px;line-height:1.75;-webkit-text-size-adjust:100%}
+main{max-width:44rem;margin:0 auto;padding:0 1rem 7rem}
+h1,h2,h3{font-family:var(--serif);line-height:1.3;margin:0}
+h1{font-size:1.9rem;font-weight:900;letter-spacing:.02em}
+h4{margin:1.2rem 0 .4rem;font-size:1.05rem}
+h5{margin:1rem 0 .2rem;font-size:.95rem;color:var(--mute);font-weight:600}
+p{margin:.5rem 0}
+a{color:var(--ridge)}
+:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+
+header.top{padding:2.2rem 1rem 1.2rem;max-width:44rem;margin:0 auto}
+.meta{color:var(--mute);font-size:.9rem;margin:.4rem 0 1rem}
+.task{font-family:var(--serif);font-size:1.25rem;font-weight:700;line-height:1.6;border-left:6px solid var(--bamboo);padding:.2rem 0 .2rem 1rem;margin:1rem 0}
+.o{font-size:.95rem;color:var(--mute)}
+
+nav.when{position:sticky;top:0;z-index:5;background:var(--fog);border-bottom:1px solid var(--line);}
+nav.when ul{display:flex;gap:.3rem;list-style:none;margin:0 auto;padding:.5rem 1rem;max-width:44rem;overflow-x:auto}
+nav.when a{display:block;white-space:nowrap;text-decoration:none;color:var(--slate);padding:.35rem .8rem;border:1px solid var(--line);border-radius:2rem;background:var(--paper);font-size:.95rem}
+nav.when a.today{background:var(--bamboo);color:var(--paper);border-color:var(--bamboo);font-weight:700}
+
+/* 時間軸：一條步道，節點是情境 */
+section.stop{position:relative;padding:2rem 0 1rem 2.2rem;border-left:3px solid var(--bamboo);margin-left:.6rem}
+section.stop::before{content:"";position:absolute;left:-.72rem;top:2.35rem;width:1.2rem;height:1.2rem;border-radius:50%;background:var(--fog);border:4px solid var(--bamboo)}
+section.stop.after{border-left-style:dashed}
+section.stop>h2{font-size:1.5rem;font-weight:900}
+section.stop>h2 small{display:block;font-family:var(--sans);font-weight:400;font-size:.9rem;color:var(--mute);margin-top:.2rem}
+.when-label{font-size:.95rem;font-weight:700;color:var(--bamboo);margin:1.8rem 0 .4rem;position:relative}
+.when-label::before{content:"";position:absolute;left:-2.62rem;top:.62rem;width:.6rem;height:.6rem;border-radius:50%;background:var(--bamboo)}
+
+.say-first{background:var(--paper);border:1px solid var(--line);border-radius:.4rem;padding:1rem 1.1rem;margin:.6rem 0}
+blockquote{margin:.6rem 0;padding:.2rem 0 .2rem 1rem;border-left:3px solid var(--line);font-size:1.02rem}
+
+details.card,details.fold{background:var(--paper);border:1px solid var(--line);border-radius:.4rem;margin:.55rem 0}
+details>summary{position:relative;cursor:pointer;list-style:none;padding:.8rem 2.6rem .8rem 1rem;display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem}
+details>summary::-webkit-details-marker{display:none}
+details>summary::after{content:"＋";position:absolute;right:1rem;top:.8rem;color:var(--mute)}
+details[open]>summary::after{content:"－"}
+.cid{font-family:var(--serif);font-weight:900;font-size:1.15rem;min-width:2.2rem}
+.ct{font-weight:700;flex:1 1 12rem}
+.tags{display:flex;gap:.3rem;flex-wrap:wrap;flex-basis:100%;padding-left:2.7rem}
+.tag{font-size:.8rem;padding:.05rem .5rem;border-radius:.25rem;font-weight:600}
+.t-g{background:var(--bamboo-soft);color:var(--bamboo)}
+.t-s{background:var(--ridge-soft);color:var(--ridge)}
+.t-m{background:var(--ochre-soft);color:var(--ochre)}
+.t-c{background:var(--plum-soft);color:var(--plum)}
+.cbody,.fbody{padding:0 1rem 1rem;border-top:1px solid var(--line)}
+.cbody b,.row b{display:inline-block;min-width:3.6em;color:var(--mute);font-weight:600;font-size:.9rem}
+ul.q{margin:.4rem 0;padding:0;list-style:none}
+ul.q li{padding:.55rem 0 .55rem .9rem;border-left:3px solid var(--bamboo);margin:.45rem 0;font-size:1.05rem}
+.branch{margin:.8rem 0}
+.br{padding:.4rem 0;border-top:1px dashed var(--line)}
+.br p{margin:.1rem 0} .say{color:var(--mute)} .re{padding-left:1em}
+.limit{background:var(--stop-soft);border-left:4px solid var(--stop);padding:.6rem .8rem;border-radius:0 .3rem .3rem 0}
+.limit b{color:var(--stop)}
+
+ol.spine{margin:.4rem 0;padding-left:1.4rem} ol.spine li{margin:.5rem 0} ol.spine b{display:block;font-size:.9rem;color:var(--mute);font-weight:600}
+.move{margin-top:.6rem}
+.night{background:var(--ridge-soft);border-radius:.4rem;padding:.4rem 1rem 1rem;margin:1.4rem 0 .4rem}
+.night h4{color:var(--ridge)} .night ul{margin:0;padding-left:1.2rem}
+.check{list-style:none;padding:0;margin:.4rem 0}
+.check li{display:flex;gap:.7rem;align-items:flex-start;padding:.7rem 0;border-top:1px solid var(--line)}
+.check input{width:1.4rem;height:1.4rem;margin-top:.25rem;flex:none;accent-color:var(--bamboo)}
+.check input:checked+span{color:var(--mute)}
+table{border-collapse:collapse;width:100%;font-size:.95rem;margin:.6rem 0}
+th,td{border:1px solid var(--line);padding:.5rem .6rem;vertical-align:top;text-align:left}
+th{background:var(--fog);font-weight:600}
+td small{display:block;color:var(--mute)}
+td.no{color:var(--stop);font-weight:700}
+.scroll{overflow-x:auto}
+.tpl{position:relative;margin:.6rem 0}
+pre{background:var(--fog);border:1px solid var(--line);border-radius:.3rem;padding:.9rem;white-space:pre-wrap;word-break:break-all;font-family:var(--sans);font-size:.9rem;line-height:1.7;margin:0}
+button{font:inherit;cursor:pointer}
+.copy{margin:.2rem 0 .4rem;padding:.4rem .9rem;border-radius:.3rem;border:1px solid var(--bamboo);background:var(--paper);color:var(--bamboo);font-weight:600}
+.fab{position:fixed;right:1rem;bottom:1rem;z-index:6;padding:.8rem 1.2rem;border-radius:2rem;border:0;background:var(--slate);color:var(--fog);font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+dialog{border:0;border-radius:.6rem .6rem 0 0;padding:1.2rem 1.2rem 2rem;max-width:44rem;width:100%;margin:auto auto 0;background:var(--paper);color:var(--slate);max-height:88vh}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+dialog h3{font-size:1.25rem;margin-bottom:.4rem}
+.close{float:right;border:1px solid var(--line);background:none;color:var(--slate);border-radius:.3rem;padding:.3rem .8rem}
+.three{margin:.4rem 0;padding-left:1.3rem} .three li{margin:.4rem 0}
+footer{color:var(--mute);font-size:.88rem;padding:1.5rem 0 0 2.8rem}
+@media print{nav.when,.fab,.copy{display:none} body{background:#fff;font-size:11pt} details{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>奇萊南華<br>引導提問時間軸</h1>
+  <p class="meta">2026/09/20–09/22｜活動代碼 FH114-2CLNH｜依主文件 v0.7｜離線可用</p>
+  <p class="task">這三天只做一件事：接住一個真實事件，聽懂學生的決策，對照適切證據，給出回饋，再約一次能看見行動的機會。</p>
+  <p class="o">技術標準、操作流程與處置，一律依學校既有核定文件與權責人。本頁不新設、不放寬任何安全條件。本梯次只蒐證，不打等第。</p>
+</header>
+
+<nav class="when" aria-label="時間">
+ <ul>
+  <li><a href="#pre" data-d="pre">行前</a></li>
+  <li><a href="#d1" data-d="2026-09-20">9/20</a></li>
+  <li><a href="#d2" data-d="2026-09-21">9/21</a></li>
+  <li><a href="#d3" data-d="2026-09-22">9/22</a></li>
+  <li><a href="#after" data-d="after">下山後</a></li>
+  <li><a href="#cards">紀錄卡</a></li>
+ </ul>
+</nav>
+
+<main>
+
+<section class="stop" id="pre">
+  <h2>行前<small>9/19 至出發前</small></h2>
+
+  <p class="when-label">出發前確認</p>
+  <ul class="check">
+   <li><input type="checkbox" id="k1"><span><label for="k1"><b>誰關注誰。</b></label>每位老師固定 4–6 位學生，三天跟同一批人。名單、學生代碼、補記或接手的人已確認。名單未確認就改單人記錄，並註明覆蓋缺口。</span></li>
+   <li><input type="checkbox" id="k2"><span><label for="k2"><b>安全由誰查核與處置。</b></label>本次適用的核定文件、原表、查核人、處置權責人已連到原件。未知項目明列。<strong>未確認前，不以本稿放行需要該資格的任務。</strong></span></li>
+   <li><input type="checkbox" id="k3"><span><label for="k3"><b>學生知道紀錄用途。</b></label>誰可看、如何保存、可拒答或中止的方式。錄音、研究與外部處理未完成授權前不執行。學生代碼與姓名對照分開保存。</span></li>
+   <li><input type="checkbox" id="k4"><span><label for="k4"><b>分母。</b></label>P（全體參與學生）、N（願意參與訪談者）、H（應查核的「學生×安全項目×時點」件數）由專案彙整確認。本頁不填數字。</span></li>
+   <li><input type="checkbox" id="k5"><span><label for="k5"><b>試走一次。</b></label>用一個標為虛構的事件，走完「提問、紀錄、回饋、再看」。確認事件編號 FH114-2CLNH-S__-E__ 與每日交接方式。</span></li>
+   <li><input type="checkbox" id="k6"><span><label for="k6"><b>行後人選。</b></label>複核老師、追蹤老師與可用時段。10/02 只是建議日期，不當成已通知。</span></li>
+  </ul>
+
+  <p class="when-label">上山前先讀熟</p>
+  <details class="fold"><summary><span class="ct">怎麼問：一條主幹與接法</span></summary><div class="fbody">
+   
+<ol class="spine">
+ <li><b>接事件</b>「剛才哪一件事，你需要決定怎麼做？」</li>
+ <li><b>還原決策與行動</b>「你注意到什麼？怎麼決定？自己做了哪一步，後來怎麼樣？」</li>
+ <li><b>理由與策略</b>「你憑什麼這樣做？從哪個結果看出它有用，或需要改？」</li>
+ <li><b>確認來源</b>「哪個細節或紀錄能讓我們確認？」</li>
+ <li><b>回饋並約下一步</b>「下一次想保留或改哪一步？我怎麼支持你？何時再看？」</li>
+</ol>
+<p class="move"><span class="tag t-m">遷</span>「這件事回到平常，有沒有哪裡像？具體什麼時候會用到？」</p>
+
+   <ul>
+    <li><b>不逐句念完。下一問接學生剛說的話。</b>最省力的接法：把他最後幾個字重複一次，變成問句。</li>
+    <li><b>不問「你覺得自己有沒有成長」，問「你剛才那個地方是怎麼決定的」。</b></li>
+    <li>沒有自主選項時：「哪部分是老師的指示？你怎麼理解、怎麼做？」不要求學生編出選擇。</li>
+    <li><b>第 3 步最關鍵。</b>「硬撐過去」和「找到做法」會留下不同的內容。兩種都照原話記；理由是否適切留到判讀欄，不當場分高低。</li>
+   </ul>
+   <h4>三條原則</h4>
+   <ol><li><b>問，不要講。</b>但安全操作需要立即指示時，直接依帶隊程序指示，事後再回顧。</li><li><b>由事件選題。</b>情境沒出現就換卡，不製造情境。</li><li><b>不過度追問。</b>三天每人 2–3 個主題已足夠。累了先吃飯。</li></ol>
+   <h4>常見回答怎麼接</h4>
+   <div class="branch">
+    <div class="br"><p class="say">「就照做啊。」</p><p class="re">「哪部分是老師的指示？你怎麼理解？實際做了什麼？」</p></div>
+    <div class="br"><p class="say">「有變好。」</p><p class="re">「挑一次後來的事。做法和第一次哪裡不同？條件也一樣嗎？」</p></div>
+    <div class="br"><p class="say">「就硬撐／忍一下。」</p><p class="re">「那時你實際做了什麼？有沒有調整、求助或得到支持？」</p></div>
+    <div class="br"><p class="say">「都是我做的／大家一起做。」</p><p class="re">「你做哪部分，別人做哪部分？怎麼接起來？」</p></div>
+    <div class="br"><p class="say">「不知道／忘了。」</p><p class="re">「先不分析。剛才你做的第一件事還記得嗎？」仍不願談就停。</p></div>
+    <div class="br"><p class="say">「沒機會／不想談。」</p><p class="re">停、換時機或改用寫的。分別記原因，不記成能力不足。</p></div>
+    <div class="br"><p class="say">回答很順、很標準</p><p class="re">請他挑一個具體時刻再說一次。不因答得漂亮加分。</p></div>
+   </div>
+   <h4>收尾：一段回饋做四件事</h4>
+   <ol>
+    <li><b>確認：</b>「我看到＿＿；你說當時依據＿＿。我有沒有聽錯？」</li>
+    <li><b>肯定有依據的行動：</b>「這次可以看見你做了＿＿。」不順勢認證尚未查核的技術。</li>
+    <li><b>處理卡點：</b>「哪一步還卡住？你想怎麼試？我可以提供＿＿。」</li>
+    <li><b>約定再看：</b>「下一次在＿＿，你試＿＿，我提供＿＿；我們在＿＿看結果。」</li>
+   </ol>
+   <p>學生不同意老師的理解，就保留分歧。<b>先留學生原本的說法，再記老師的提示和後來的回應。</b>提示後的表現不回寫成原先就能獨立完成。</p>
+   <blockquote><b>虛構示例</b><br>學生：「我怕忘記公共裝備，所以先看分工表，整理好就回報。」<br>老師：「我看到你查了分工表，也聽到你回報。這次你把自己的任務和整組交接接起來了。原裝備查核還有一項待確認，那部分仍照原程序處理。下一次你準備在哪一步先確認？我會把分工表放在同樣的位置，完成後再一起看。」</blockquote>
+  </div></details>
+
+  <details class="fold"><summary><span class="ct">界線：兩軌、證據、安全防火牆</span></summary><div class="fbody">
+   <h4>四種標記</h4>
+   <p><span class="tag t-g">通</span> 通用能力軌。主線 1-2、1-4、3-4；備用 1-1、1-3，有相關事件才用。4-4 不在現場問。</p>
+   <p><span class="tag t-s">專</span> 外展技能軌。體能管理、輕量化、LNT、風險應變、天候判讀。這些是歸檔標籤，不是技能規準。只用技術語言，不引用學生圖像條文。</p>
+   <p><span class="tag t-c">課</span> 課程條件。另記，不換算學生等第。</p>
+   <p><span class="tag t-m">遷</span> 後續應用。追蹤標記，不代表已遷移。</p>
+   <p>同一事件可以連兩軌：分開判讀，不加權，不重複計成多份成就。</p>
+   <h4>訪談只負責質化兩格</h4>
+   <div class="scroll"><table>
+    <tr><th></th><th>通</th><th>專</th></tr>
+    <tr><th>量化</th><td>行前作業與紀錄的時效、件數／分母</td><td>既有體能量測、裝備秤重、既有查核表結果</td></tr>
+    <tr><th>質化</th><td>◎ 安排依據、取捨、協調過程、意義理解</td><td>◎ 技術判斷依據、適用條件、求助與修正的理由</td></tr>
+   </table></div>
+   <ul>
+    <li>量化來自原始紀錄，不用學生自述去補。原件是否取得要另標；未取得就記缺漏。</li>
+    <li>「我做了」先記學生自述；老師親見、作品、量測、查核各標來源。</li>
+    <li>比率保留分子與分母。補交與複測另記，不刪前次結果。</li>
+    <li><b>右下格最容易漏。</b>題目全落在左下，技能軌就只剩數字。</li>
+   </ul>
+   <h4>安全防火牆</h4>
+   <p><strong>訪談所得的任何資料，不得用於鬆動或補救安全判定。</strong></p>
+   <div class="scroll">
+<table class="fw">
+ <tr><th>項目</th><th>訪談能否影響</th></tr>
+ <tr><td>體能相關門檻<small>原始量測、既有核定規準</small></td><td class="no">不能</td></tr>
+ <tr><td>裝備重量、完備性<small>秤重、既有裝備檢核</small></td><td class="no">不能</td></tr>
+ <tr><td>是否撤退、轉留守或調整任務<small>權責人依既有程序判定</small></td><td class="no">不能</td></tr>
+ <tr><td>學生對風險的判斷品質</td><td>可以，但只是「他懂不懂」的證據，不是「能不能進入該任務」的依據</td></tr>
+ <tr><td>談話中出現新的不適、裝備缺失或危險資訊</td><td class="no">立刻停止訪談，交權責人依原程序處理。不等晚間整理</td></tr>
+</table></div>
+   <ul>
+    <li>硬門檻維持純量化，不加權，不以進步幅度、合作或反思抵銷。原核定文件另有必要操作項目，照原表獨立查核。</li>
+    <li><strong>本頁不提供心率區間、速度、時限、重量上限或退場辦法。</strong>原稿提到的 Zone 2、重量等名稱，未連到核定條件前一律列為待確認。</li>
+    <li>規準未確認時不勾通過。</li>
+   </ul>
+   <p>遇到落差時這樣說：</p>
+   <blockquote>「你剛才的判斷我聽懂了，這部分我會記下來。體能／裝備那條標準是另外一套，依原本的查核結果走，跟我們這段談話無關。」</blockquote>
+   <h4>三種狀態不互換</h4>
+   <p><b>資料不足</b>（證據狀態）｜<b>未達門檻</b>（依規準的結果）｜<b>優可劣</b>（能力評等，本梯次暫緩）。訪談不足不抹除已取得的技術數據；技術通過也不補成缺少的意義資料。</p>
+  </div></details>
+</section>
+
+<section class="stop" id="d1">
+  <h2>9/20（日）<small>從準備、行進與安頓，找到第一個事件</small></h2>
+  <p class="o">日期是順序，情境才是觸發點。以下不替代核定行程。所有回顧都在安全位置進行。</p>
+
+  <p class="when-label">第一次和學生談之前：開場</p>
+  <div class="say-first">
+   <p>意圖要在第一天講，不能第三天才補。</p>
+   <blockquote>「這三天我會找適合的時候，和你聊一件真的發生的事。我想了解你怎麼決定、怎麼做，也會對照任務與老師的紀錄，和你一起找下一步。</blockquote>
+   <blockquote>我先講清楚為什麼要做這件事：我們想知道外展到底讓你們學到什麼，過去都是老師自己猜，所以我想直接聽你們怎麼講。你講得再普通都可以，講場面話對我反而沒用。這次不打分數，也不打等第。</blockquote>
+   <blockquote>安全和技能仍照原來的查核，不靠你回答得好不好來判定。如果你提到身體不舒服或裝備有問題，我會轉給負責的老師處理。我會依已說明的用途整理紀錄；這段面談不想答、想停，或想改用寫的，都可以告訴我。」</blockquote>
+   <p>接著問：「這三天你想特別留意哪一件事？你準備怎麼做？」這是學習起點，不是前測分數。</p>
+   <p class="o">實際告知須與學校確認的資料用途一致。不以「只是聊天」掩蓋蒐證用途。</p>
+  </div>
+
+  <p class="when-label">整裝完成、出發準備後</p>
+  <p>今天從 1A 開始；有裝備取捨接 1B。</p>
+  
+<details class="card" id="c1A">
+  <summary><span class="cid">1A</span><span class="ct">準備怎麼用？事情怎麼排？</span><span class="tags"><span class='tag t-g'>通 1-4</span><span class='tag t-g'>通 1-2 時間</span></span></summary>
+  <div class="cbody">
+    <p class="scene"><b>情境</b>整裝完成、任務結束或安全休息時。兩個入口選一個。</p>
+    <h5>準備入口</h5><ul class='q'><li>「這次行前，你最想先弄懂或準備好哪件事？你做了什麼準備？」</li><li>「挑今天一次用到的情況。你怎麼用？哪一步和原先想的不一樣？沒用到也可以說。」</li><li>現場與資料不一致時：「你怎麼確認下一步要怎麼做？」</li></ul><h5>時間入口</h5><ul class='q'><li>「剛才準備出發時，你先做了哪些事？」</li><li>「你怎麼決定先後？哪一步最花時間，後來怎麼處理？」</li></ul>
+    <div class='branch'><h5>若學生這樣答</h5><div class='br'><p class='say'>「我有查資料。」</p><p class='re'>「挑一項：當時想解決什麼問題？今天用在什麼地方？」</p></div><div class='br'><p class='say'>「查了，但沒用到。」</p><p class='re'>「是沒遇到那個情境，還是資料不適用？你怎麼分辨？」</p></div><div class='br'><p class='say'>「問老師就好了。」</p><p class='re'>「你當時怎麼問？得到說明後，接著怎麼做？」</p></div><div class='br'><p class='say'>「來不及，都是別人在等。」</p><p class='re'>「先還原：你做到哪一步？當時還缺什麼？」</p></div></div>
+    <p class="row"><b>留下</b>目標、資料來源、查證、先後安排、現場修正。作業時效、約定與完成時間連原紀錄。</p>
+    <p class="row"><b>下一步</b>選一項要再查、再試或改順序的做法。</p>
+    <p class="limit"><b>界線</b>準時交件不等於策略有效。一次準時或一次延誤，都不寫成穩定特質。</p>
+  </div>
+</details>
+<details class="card" id="c1B">
+  <summary><span class="cid">1B</span><span class="ct">裝備怎麼取捨？</span><span class="tags"><span class='tag t-s'>專 輕量化</span></span></summary>
+  <div class="cbody">
+    <p class="scene"><b>情境</b>裝備準備或檢查已完成。</p>
+    <ul class='q'><li>「這次有哪件裝備，你曾猶豫要不要帶？最後怎麼決定？」</li><li>「你怎麼確認它的用途、可能用到的情況，以及老師說明的必要要求？」</li><li>有實際調整才問：「後來改了什麼？由誰確認？有重新檢查的紀錄嗎？」</li></ul>
+    
+    <p class="row"><b>留下</b>功能、取捨依據、待查問題。重量連原秤重表並註明量測口徑。必要項目回到原檢核。</p>
+    <p class="row"><b>下一步</b>要改動先交權責人確認，再依原程序補正或重新查核。</p>
+    <p class="limit"><b>界線</b>不問「再減一公斤你會丟什麼」。不設減重任務，不暗示刪除必要裝備。</p>
+  </div>
+</details>
+  <p class="when-label">一段行進結束，到安全休息處</p>
+  
+<details class="card" id="c1C">
+  <summary><span class="cid">1C</span><span class="ct">步調怎麼決定？</span><span class="tags"><span class='tag t-s'>專 體能管理</span><span class='tag t-g'>相關時另記 通 1-2</span></span></summary>
+  <div class="cbody">
+    <p class="scene"><b>情境</b>一段行進結束，學生狀態適合談話。</p>
+    <ul class='q'><li>「剛才那一段，你怎麼決定自己的步調？」</li><li>「你先注意到自己的哪些狀況？哪些是自己調整，哪些是跟著隊伍或老師安排？」</li><li>「你怎麼知道這個步調對你剛好？哪個細節或已有紀錄能一起看？」</li></ul>
+    
+    <p class="row"><b>留下</b>學生自述的狀況、實際調整、他人支持與結果。已有體能紀錄另連原件，記時點、條件、原值、單位。</p>
+    <p class="row"><b>下一步</b>討論已教過、可在帶隊安排中再練的做法。</p>
+    <p class="limit"><b>界線</b>「不喘」「有走完」不等於達標。本稿不給配速或心率處方。不為補資料加速、增重或延長行走。</p>
+  </div>
+</details>
+  <p class="when-label">延誤、互動不順或疲憊之後</p>
+  
+<details class="card" id="c1D">
+  <summary><span class="cid">1D</span><span class="ct">卡住時怎麼處理？</span><span class="tags"><span class='tag t-g'>通 1-2 情緒</span></span></summary>
+  <div class="cbody">
+    <p class="scene"><b>情境</b>延誤、互動不順或疲憊之後，已先處理休息與照顧。明顯不適不是訪談機會。</p>
+    <ul class='q'><li>「剛才那一段，你自己的感覺怎麼樣？」引用觀察時只說確定看到的事：「我看到你停下來沒有說話，那時發生什麼？」</li><li>「你注意到那個感覺之後，做了什麼？有沒有找人協助？」</li><li>「後來有什麼變化？哪部分有用，哪部分沒有？」</li></ul>
+    <div class='branch'><h5>若學生這樣答</h5><div class='br'><p class='say'>「忍一下就好了。」</p><p class='re'>「那時實際做了什麼？之後有比較能處理事情嗎？」</p></div><div class='br'><p class='say'>「有人陪我講話就比較好了。」</p><p class='re'>「對方說了或做了什麼？哪一部分有幫助？」</p></div><div class='br'><p class='say'>「還是很不舒服。」</p><p class='re'>「先不分析。你現在希望我怎麼幫忙？」必要時交權責人。</p></div><div class='br'><p class='say'>「沒什麼情緒。」</p><p class='re'>「好，那這題先留著。」</p></div></div>
+    <p class="row"><b>留下</b>感受標學生自述；行為、支持與效果另記。「沒變」「更不舒服」也照記。</p>
+    <p class="row"><b>下一步</b>學生選一個想再用的方法或支持。</p>
+    <p class="limit"><b>界線</b>安靜不等於已調整；需要支持不等於能力較差；說得出方法不等於優。不把情緒編成分數，不鼓勵硬撐。</p>
+  </div>
+</details>
+  <p class="when-label">山莊安頓、輪值、交接之後</p>
+  <p>已有分工協調事件，直接用 <a href="#c2A">2A</a>，不必等到明天。</p>
+  
+<details class="card" id="c1E">
+  <summary><span class="cid">1E</span><span class="ct">答應的事，後來怎麼完成？</span><span class="tags"><span class='tag t-g'>通 1-3 備用</span></span></summary>
+  <div class="cbody">
+    <p class="scene"><b>情境</b>公共裝備、輪值或交接完成後。有相關事件才用；順利完成也能談。出現分工協調就改用 2A。</p>
+    <ul class='q'><li>「今天你答應負責哪件事？後來怎麼做？」</li><li>「挑一個關鍵時刻。你怎麼確認已完成，或發現還沒完成？」</li><li>有疏失才問：「你發現後告訴誰、做了什麼？後來如何確認？」</li></ul>
+    
+    <p class="row"><b>留下</b>承諾、本人行動、交接、支持與結果，連任務表。別人代做的部分不算本人完成。</p>
+    <p class="row"><b>下一步</b>約定下一次如何確認與交接。</p>
+    <p class="limit"><b>界線</b>遺漏若涉及安全項目，道歉或主動補救不能代替重新查核。老師可先講自己一個真實的小失誤來開場，但不編造。</p>
+  </div>
+</details>
+  <p class="when-label">今天最後一次談話</p>
+  <div class="say-first"><p>「今天哪個做法明天還有機會試？你想保留或改什麼？」</p><p>有合適材料再接 <span class="tag t-m">遷</span>，此時只記打算。課程條件題可先問 C1。</p></div>
+  
+<div class="night">
+ <h4>今晚對齊</h4>
+ <ul>
+  <li><b>先做：</b>核對安全處置是否已交接。</li>
+  <li><b>整理約 10 分鐘：</b>補事件與來源，安排下一步。</li>
+  <li><b>碰頭約 5 分鐘：</b>誰還沒得到談話機會？哪一軌整天沒碰到？每筆下一步有沒有人接？</li>
+  <li>今天［通］［專］各留意一題、［遷］一次了嗎？沒有合適事件就記原因，不為題數製造測試。</li>
+  <li>記不完就留「未複核」，不為限時完成補造原話。</li>
+ </ul>
+</div>
+</section>
+
+<section class="stop" id="d2">
+  <h2>9/21（一）<small>先接昨天的下一步，再談新事件</small></h2>
+
+  <p class="when-label">今天第一次談話前</p>
+  <div class="say-first">
+   <p>重述意圖：「跟昨天一樣，我只是想聽你怎麼決定，不打分數。」</p>
+   <p><b>先接昨天：</b>「昨天你說要試＿＿，今天有機會嗎？實際怎麼進行？」</p>
+   <p>有新事件就連編號；沒機會就記原因，不另找一個進步故事。</p>
+  </div>
+
+  <p class="when-label">出發準備、分工或交接後</p>
+  
+<details class="card" id="c2A">
+  <summary><span class="cid">2A</span><span class="ct">大家的任務怎麼接起來？</span><span class="tags"><span class='tag t-g'>通 3-4</span></span></summary>
+  <div class="cbody">
+    <p class="scene"><b>情境</b>分工、輪值或交接後。隊伍有速度落差時，先完成帶隊處理再談。</p>
+    <ul class='q'><li>「剛才你負責哪部分？大家怎麼決定分工？」</li><li>「哪一刻需要調整或協調？你說了、做了什麼？」</li><li>「其他人怎麼回應？任務接著怎麼進行？」</li></ul>
+    <div class='branch'><h5>若學生這樣答</h5><div class='br'><p class='say'>「就互相幫忙。」</p><p class='re'>「挑一個時刻：誰需要什麼？你怎麼知道？你做了哪一步？」</p></div><div class='br'><p class='say'>「都是我在做。」</p><p class='re'>「哪些原本歸你、哪些後來接手？當時怎麼說明或協調？」</p></div><div class='br'><p class='say'>「我自己的做完就好了。」</p><p class='re'>「你完成後，怎麼知道整組進行到哪裡？」</p></div><div class='br'><p class='say'>「照分工做，很順。」</p><p class='re'>「哪個約定讓你們接得上？」不必製造衝突。</p></div><div class='br'><p class='say'>「我們吵起來了。」</p><p class='re'>「你願意只談自己的部分嗎？你當時想讓對方理解什麼？」</p></div></div>
+    <p class="row"><b>留下</b>本人角色、協商、交接與結果。分工件數與時間只描述參與。</p>
+    <p class="row"><b>下一步</b>學生與同伴確認一項交接或協調做法。</p>
+    <p class="limit"><b>界線</b>接手多、聲音大、沒衝突，都不等於合作好。團隊完成不等於每人都會。</p>
+  </div>
+</details>
+  <p class="when-label">觀察到天候變化，已到安全位置</p>
+  
+<details class="card" id="c2B">
+  <summary><span class="cid">2B</span><span class="ct">天候判斷根據什麼？</span><span class="tags"><span class='tag t-s'>專 天候判讀</span></span></summary>
+  <div class="cbody">
+    <p class="scene"><b>情境</b>實際觀察到天候變化之後。</p>
+    <ul class='q'><li>「回想剛才，你注意到天氣有哪些變化？」</li><li>「你當時怎麼理解？哪些是你看到的，哪些來自老師或其他資料？」</li><li>「後來怎麼核對？有哪些還不確定？」</li></ul>
+    
+    <p class="row"><b>留下</b>觀察線索、資訊來源、當時判讀、後續核對。事後才知道的結果另記，不回寫成當時已判斷正確。</p>
+    <p class="row"><b>下一步</b>需要補學的部分，交權責人安排說明與練習。</p>
+    <p class="limit"><b>界線</b>不要求學生當場預測。說得出線索不等於判讀正確，也不由此宣布下一段行程安全。</p>
+  </div>
+</details>
+  <p class="when-label">繼續、調整或折返的決定與處置完成後</p>
+  
+<details class="card" id="c2C">
+  <summary><span class="cid">2C</span><span class="ct">繼續、調整或折返，當時怎麼決定？</span><span class="tags"><span class='tag t-s'>專 風險應變</span></span></summary>
+  <div class="cbody">
+    <p class="scene"><b>情境</b>相關決定與必要處置已完成之後。</p>
+    <ul class='q'><li>「剛才那一段，你當時先注意到哪些資訊？」</li><li>「決定由誰作？哪部分依老師指示，哪部分需要你確認？你做了什麼？」</li><li>「哪些資訊讓你需要停下、詢問或改變原做法？」</li><li>「回想老師說明的要求，哪個部分還想再確認？」</li></ul>
+    
+    <p class="row"><b>留下</b>當時資訊、權責、指示、本人操作、不同理解。既有應變流程只連原件，本稿不補寫步驟。沒看到的步驟記未觀察。</p>
+    <p class="row"><b>下一步</b>不同意見如實保留；技術誤解由權責人說明。</p>
+    <p class="limit"><b>界線</b><strong>不為蒐證接近危險地形，不要求重演。</strong>不要求學生自訂撤退條件。說得出來不等於實作通過。老師接手的操作不算給學生。</p>
+  </div>
+</details>
+  <p class="when-label">有人幫忙或被幫忙之後</p>
+  
+<details class="card" id="c2D">
+  <summary><span class="cid">2D</span><span class="ct">你怎麼幫，對方又做了什麼？</span><span class="tags"><span class='tag t-g'>通 3-4</span></span></summary>
+  <div class="cbody">
+    <p class="scene"><b>情境</b>協助他人或受到幫助之後。</p>
+    <ul class='q'><li>「今天有沒有一次，你幫了別人，或別人幫了你？」</li><li>「當時需要什麼？你們怎麼確認？各自做了哪部分？」</li><li>「後來對方能接著做什麼？」</li></ul>
+    
+    <p class="row"><b>留下</b>對象、需要、各自行動與接手範圍。</p>
+    <p class="row"><b>下一步</b>確認下一次如何支持，又保留對方可完成的部分。</p>
+    <p class="limit"><b>界線</b>把「協助」與「常態代做」分開，聽到「我幫他做了」要追問怎麼幫。因安全必須接手時先處理，不為保留學習機會延誤協助。</p>
+  </div>
+</details>
+  <p class="when-label">今天也可能用到</p>
+  <p>情緒事件沿用 <a href="#c1D">1D</a>。完成一段挑戰或調整目標後，可用 <a href="#c3B">3B</a>。</p>
+  <p class="when-label">今天最後一次談話</p>
+  <div class="say-first"><p>「今天哪個做法你想再試？明天有哪些條件可能不同？」</p><p>再從一件已談清楚的事接 <span class="tag t-m">遷</span>。不要求每人都有重大轉變。</p></div>
+  
+<div class="night">
+ <h4>今晚對齊</h4>
+ <ul>
+  <li><b>先做：</b>核對安全處置是否已交接。</li>
+  <li><b>整理約 10 分鐘：</b>補事件與來源，安排下一步。</li>
+  <li><b>碰頭約 5 分鐘：</b>誰還沒得到談話機會？哪一軌整天沒碰到？每筆下一步有沒有人接？</li>
+  <li>今天［通］［專］各留意一題、［遷］一次了嗎？沒有合適事件就記原因，不為題數製造測試。</li>
+  <li>記不完就留「未複核」，不為限時完成補造原話。</li>
+ </ul>
+</div>
+</section>
+
+<section class="stop" id="d3">
+  <h2>9/22（二）<small>用一件事收束，安排山下的下一次</small></h2>
+  <p class="o">下山或回程不自動等於適合談話。依安全、疲勞與隱私選時機；可先寫短句再補說。</p>
+
+  <p class="when-label">今天第一次談話前</p>
+  <div class="say-first"><p>重述意圖，再接昨天：「昨天你說要試＿＿，今天有機會嗎？」</p></div>
+
+  <p class="when-label">整理住宿空間、垃圾或用餐任務後</p>
+  
+<details class="card" id="c3A">
+  <summary><span class="cid">3A</span><span class="ct">怎麼減少這次留下的影響？</span><span class="tags"><span class='tag t-s'>專 LNT</span></span></summary>
+  <div class="cbody">
+    <p class="scene"><b>情境</b>實際整理住宿空間、垃圾或用餐任務後。不在私人如廁情境訪談。</p>
+    <ul class='q'><li>「剛才整理時，你實際處理了哪一件事？當地或老師說明的做法是什麼？」</li><li>「為什麼用這個做法？你怎麼確認適用？哪裡還要查？」</li><li>需要時：「換到不同環境或使用情況，你還要確認哪些資訊？」這類假設回答記為理解線索，不當作已實作。</li></ul>
+    
+    <p class="row"><b>留下</b>實際處理、規定來源、操作與理由。<strong>留事件編號</strong>，返校後的山林日誌可連回這件事。</p>
+    <p class="row"><b>下一步</b>技術疑問依原規定查證。</p>
+    <p class="limit"><b>界線</b>口頭建議不寫成已實踐；勾滿清單不等於策略品質。本稿不補寫排遺、廚餘或水源距離的技術規則。<strong>4-4 不在現場問。</strong></p>
+  </div>
+</details>
+  <p class="when-label">收束：用主幹回看三天，只改兩句</p>
+  <div class="say-first">
+   <p><b>第 1 步改成：</b>「這三天哪件事最能說明你的做法？完成、沒完成或中途調整的都可以。」</p>
+   <p><b>第 4 步之後加：</b>「哪些準備、指示、同伴或老師安排影響了你？哪些有幫助，哪些讓你做不到？」</p>
+   <p>3B–3D 已談到的不重問。學生可先寫短句、指向作品或示意。不把口語流利當作能力較高。</p>
+  </div>
+  
+<details class="card" id="c3B">
+  <summary><span class="cid">3B</span><span class="ct">這段經驗讓你更了解自己什麼？</span><span class="tags"><span class='tag t-g'>通 1-1 備用</span></span></summary>
+  <div class="cbody">
+    <p class="scene"><b>情境</b>收束時，或完成一段挑戰、調整目標、折返之後。挑一件已有紀錄的事。</p>
+    <ul class='q'><li>「挑一件事回看。它和出發前你對自己的想法，有什麼相同或不同？」</li><li>「哪個細節讓你這樣想？當時你怎麼判斷自己的能力或需要？」</li><li>若答「我撐過去了」：問實際用了什麼方法與支持。若答「我做不到」：問當時條件、已做了什麼、還需要什麼。</li></ul>
+    
+    <p class="row"><b>留下</b>本人自我理解、事件連結、情境差異。只有回想就標回溯自述。</p>
+    <p class="row"><b>下一步</b>一件要保留、再學或尋求支持的事。</p>
+    <p class="limit"><b>界線</b>不先問「你哪裡變得更好」。沒有新發現就如實記。繼續前進不是唯一的正向答案。</p>
+  </div>
+</details>
+<details class="card" id="c3C">
+  <summary><span class="cid">3C</span><span class="ct">這個做法，回去在哪裡試？</span><span class="tags"><span class='tag t-m'>遷</span></span></summary>
+  <div class="cbody">
+    <p class="scene"><b>情境</b>收束時，從一件已談清楚的事接下去。</p>
+    <ul class='q'><li>「這三天有哪個做法，你想帶回平常使用？」</li><li>「最近哪一個具體情境會用到？跟這次哪裡相同、哪裡不同？」</li><li>「你準備保留或改哪一步？需要誰支持？什麼時候一起看結果？」</li></ul>
+    
+    <p class="row"><b>留下</b>原事件、做法、新情境、支持者、追蹤時點。寫進課後應用卡。</p>
+    <p class="row"><b>下一步</b>填課後應用卡；等新情境真的發生再記實作。</p>
+    <p class="limit"><b>界線</b><strong>9/22 說的只記為「遷移打算」。</strong>不要求學生自行重現山野風險或無監督的技術任務。</p>
+  </div>
+</details>
+<details class="card" id="c3D">
+  <summary><span class="cid">3D</span><span class="ct">下一次還要練什麼？</span><span class="tags"><span class='tag t-s'>專</span><span class='tag t-g'>相關時接 通 1-4</span></span></summary>
+  <div class="cbody">
+    <p class="scene"><b>情境</b>收束時。</p>
+    <ul class='q'><li>「如果下次還有這種活動，你會想先練什麼？為什麼是那個？」</li><li>「這三天哪件事讓你想到它？你需要示範、練習還是其他支持？」</li></ul>
+    
+    <p class="row"><b>留下</b>學生提出的需要、對應事件，以及既有技術查核是否也顯示缺口；兩者不同就保留差異。</p>
+    <p class="row"><b>下一步</b>列入課程設計與技術複核的待辦。這一題直接供老師做教學決策。</p>
+    <p class="limit"><b>界線</b>說不出缺口不等於沒有缺口；想練的項目不等於正式判定。</p>
+  </div>
+</details>
+
+  <p class="when-label">收束時補齊：課程條件題</p>
+  <details class="fold"><summary><span class="ct">問的是我們的活動，不是學生的能力</span><span class="tags" style="padding-left:0"><span class="tag t-c">課</span></span></summary><div class="fbody">
+   <p>每人 1–2 題，嵌在對話裡。前兩天有合適時機也可以先問。</p>
+   <ul class="q">
+    <li><b>C1 賦權感</b>「這三天有沒有哪件事是你自己決定的？有沒有負責什麼別人要靠你的事？」</li>
+    <li><b>C2 回饋</b>「有沒有誰跟你講了什麼，讓你真的改了做法？是哪一件事？」老師給的與同學給的分開記。</li>
+    <li><b>C3 典範</b>「這趟有沒有一個你想學的做法？誰做的？你後來有試嗎？」</li>
+    <li><b>C4 反思機會</b>「這三天有沒有時間讓你自己想事情？什麼時候不太適合談？」</li>
+   </ul>
+   <p>記成課程條件，另列老師要調整什麼。不換算學生等第。</p>
+   <p class="limit"><b>界線</b>答不出來先記原因（沒機會／題意不清／不記得／不願談），不寫成學生不會合作。賦權感若多位學生都指向「沒有機會」，對照實際分工後，列為課程設計發現。</p>
+  </div></details>
+
+  <p class="when-label">給每位學生的回饋</p>
+  <div class="say-first">
+   <p>寫成兩個人的行動：</p>
+   <blockquote>「在＿＿事件裡，我看到／資料顯示你做了＿＿；你說當時依據＿＿決定。這能支持我們描述＿＿，關於＿＿還缺資料。下一次你試＿＿，我會提供＿＿，我們在＿＿再看。相關安全項目仍依＿＿結果與處置，不由這段回饋抵銷。」</blockquote>
+   <p>下山前，為每位願意參與的學生填一張 <a href="#cardC">課後應用卡</a>。</p>
+  </div>
+</section>
+
+<section class="stop after" id="after">
+  <h2>下山後<small>先複核，再寫描述</small></h2>
+
+  <p class="when-label">9/23–9/25　複核 3–5 筆</p>
+  <p>選完整、不足、有分歧的各有一些。兩位老師各自讀同一材料，再核對。產出：1 則有證據的成果描述、1 項課程調整。</p>
+  <p>複核方法（四層檢核、倒著檢查一則成果、三類成果的證據要求）用狀態包的 <code>06_verification.md</code>。少量複核不稱為工具驗證。</p>
+  <details class="fold"><summary><span class="ct">成果描述句型，以及什麼資料支持什麼下一步</span></summary><div class="fbody">
+   <blockquote>「在＿＿情境中，學生依據＿＿決定＿＿，實際做了＿＿。通用能力方面，＿＿資料支持＿＿；外展技能方面，＿＿查核得到＿＿，處置為＿＿。得到＿＿支持後，下一事件顯示＿＿／目前尚待追蹤。學生下一步＿＿，老師提供＿＿，於＿＿再看。」</blockquote>
+   <p>不適用的句子刪除並說明。只有學生自述就寫「學生表示」。</p>
+   <div class="scroll"><table>
+    <tr><th>看到的資料</th><th>可以做</th><th>不能跳到</th></tr>
+    <tr><td>有策略，也有行動與結果</td><td>提出可保留或再試的做法</td><td>「講得出策略＝優」</td></tr>
+    <tr><td>技術說明與查核有落差</td><td>權責人核對誤解、補學、重新查核</td><td>口述抵銷未達標；未答＝不會操作</td></tr>
+    <tr><td>課程條件題反覆指向同一缺口</td><td>對照行程與分工後再調整</td><td>一次答不出就認定活動失敗或導入新制度</td></tr>
+    <tr><td>說得出新情境與計畫</td><td>安排支持與追蹤</td><td>寫「已遷移」</td></tr>
+    <tr><td>新情境有行動與可回查資料</td><td>描述用了什麼、怎麼調整</td><td>一次應用＝穩定能力或課程因果</td></tr>
+   </table></div>
+   <p><b>課程調整也留證據：</b>觀察到的缺口、要補查的資料、要調整的安排、負責人、再看時點。</p>
+  </div></details>
+
+  <p class="when-label">返校後　山林日誌（4-4 永續）</p>
+  <ul>
+   <li>4-4 歸通用能力軌的質化資料，以山林日誌呈現，不在行動中提問。</li>
+   <li>日誌盡量指向三天中真的發生的事。現場有 3A 或其他環境事件，就連同一事件編號；沒有就標「無現場事件，學生回溯自述」。</li>
+   <li>來源記「作品」。日誌寫的是理解與打算；有行動與可回查資料才描述為實踐。</li>
+   <li>不打等第。不設計成自我評分題：問做了什麼、根據什麼。</li>
+   <li><b>日誌的題目、格式、繳交時點、誰讀、怎麼判讀，目前沒有，由教師團隊另定。</b></li>
+  </ul>
+
+  <p class="when-label">9/28–10/02〔建議，需另確認〕　第一次課後追蹤</p>
+  <ul class="q">
+   <li>「上次說要在＿＿試＿＿，後來有遇到機會嗎？」</li>
+   <li>「這次和外展哪裡相同、哪裡不同？你實際保留或改了哪一步？」</li>
+   <li>「有什麼作品、紀錄或當時的事可以幫我們確認？」</li>
+   <li>「結果如何？接下來還需要什麼？」</li>
+  </ul>
+  <p class="limit"><b>界線</b>沒機會、未嘗試、拒答、未取得資料各自保留。只有承諾就記「遷移打算」。技能的新情境練習限既有課程與適當監督。</p>
+
+  <p class="when-label">之後</p>
+  <p>下山後須寫回狀態包：活動代碼 FH114-2CLNH、開場文字、4-4 移至山林日誌。仍待確認：「天候判讀」標籤是否保留、山林日誌的設計。</p>
+</section>
+
+<section class="stop after" id="cards">
+  <h2>紀錄卡<small>隨時可用。原件已有的只留位置，數值不靠回憶補估</small></h2>
+  <p><b>只寫可觀察的行為與原話，判讀另欄。</b><br>✗「該生具備韌性」<br>✓「他說『反正撐過去就過去了』，講的時候在笑」</p>
+  <p>夜間補寫標「回憶轉述」。動作、表情、語氣可以記，但不推定內心狀態。</p>
+
+  <details class="fold" open><summary><span class="ct">A　現場短卡（先用這張）</span></summary><div class="fbody"><div class='tpl'><button class='copy' data-t='tA'>複製這張卡</button><pre id='tA'>事件：FH114-2CLNH-S__-E__　學生：____　日期／時段：____
+記錄者：____　提問卡：____　前次事件編號：____
+任務、本人角色、決定者／指示：____
+看到的行動／結果：____（未親見請註明）
+學生的理由與說法：____
+來源：□當時短句 □經確認安排之錄音位置____ □回憶轉述
+      □學生後來確認的意思 □原表／作品／其他____
+［通］指標及可支持的描述：____
+［專］操作／量測／查核原件位置：____；技術口述：____
+安全結果、必要處置／新資訊：____（連原表；不涉及就註明）
+下一步：學生____；老師／支持者____；再看情境／時點____
+還缺什麼／是否待複核：____</pre></div></div></details>
+  <details class="fold"><summary><span class="ct">A＋　有時間再補</span></summary><div class="fbody"><div class='tpl'><button class='copy' data-t='tAP'>複製這張卡</button><pre id='tAP'>［通］量化（適用才填）：原值或分子／分母____　單位____　條件____　原件位置____
+［通］尚不能判斷：____
+［專］查核表項目與版本：____　本人操作與支持／代做部分：____　尚未核實：____
+［課］題號與回答：____（另用於課程判斷）
+提示前的學生說法：____　老師回饋／示範：____　之後的回應：____
+學生不同意的部分：____
+後續：□只有打算 □無機會 □有機會未試 □已試，連事件____ □未取得 □暫不參與
+已有內容：□決策點 □行為變化 □策略 □遷移
+資料狀態：□可複核 □部分不足 □未取得 □有分歧待查
+複核人／日期／分歧與修訂：____（保留原紀錄，不直接覆蓋）
+能力等第：本梯次暫緩。既有安全查核不因此延後。</pre></div></div></details>
+  <details class="fold"><summary><span class="ct">B　安全硬門檻連結卡</span></summary><div class="fbody"><p>連既有表單，不是新標準；原表已有就只留編號。規準未確認、未完成查核、不適用，三者意思不同，不互換。</p><div class='tpl'><button class='copy' data-t='tB'>複製這張卡</button><pre id='tB'>學生代碼：____　活動／事件編號：____
+適用安全項目：____　適用對象／應查核時點：____
+核定文件、項目、版本與核定者：____
+核定數值條件／單位／量測方法：____（由原文件提供，本稿不填）
+原始數據／必要操作紀錄位置：____　量測時間／條件：____　查核人：____
+
+結果：□依原規準達標 □依原規準未達標 □未完成／資料不足
+      □規準或適用性待確認 □依原規定不適用，理由及確認者____
+
+談話中出現的新安全資訊及來源：____
+當下處置及依據：____　作決定的人：____　時間：____
+必要通知／交接：____
+補正／學習支持：____（不能抵銷本次未達標結果）
+重新查核：日期____　原值____　查核人____　結果____
+後續能否進入相關任務：依據____　權責人決定____
+前次紀錄編號：____（原始未達標結果保留）</pre></div></div></details>
+  <details class="fold" id="cardC"><summary><span class="ct">C　課後應用卡</span></summary><div class="fbody"><div class='tpl'><button class='copy' data-t='tC'>複製這張卡</button><pre id='tC'>學生代碼：____　原事件編號：____　原先準備帶走的做法：____
+新情境：____　預計時點：____　支持者／追蹤老師：____
+相同與不同條件：____　新情境適用的安全要求（如有）：____
+實際追蹤日期：____
+狀態：□只有打算 □有機會未試 □已試 □無機會 □未取得資料 □暫不參與
+學生實際做了什麼、依據什麼調整：____
+證據：□學生自述 □作品／紀錄 □老師觀察 □其他____　位置／新事件編號：____
+目前可說的應用描述：____　尚不能說的部分：____
+下一次行動／負責人／時點：____</pre></div></div></details>
+
+  <details class="fold"><summary><span class="ct">每晚覆蓋表與分母</span></summary><div class="fbody">
+   <div class="scroll"><table>
+    <tr><th>學生</th><th>機會／參與狀態</th><th>主事件與指標</th><th>技能原件與安全紀錄位置</th><th>下一步／追蹤</th><th>缺口與原因</th></tr>
+    <tr><td>S__</td><td>日期、方式、願意／暫不參與</td><td>事件編號；指標</td><td>原表／B 卡編號；結果與處置</td><td>行動、支持者、時點</td><td>未提供機會／無情境／拒答／記錄不足</td></tr>
+   </table></div>
+   <p class="limit"><b>界線</b>分母不混用：訪談用 N，安全查核用 H。拒答不免除安全查核與照顧。H 的紀錄完整，不等於安全通過；記了未完成原因，不代表可以放行。</p>
+  </div></details>
+</section>
+
+<footer>依《奇萊南華｜9/20–9/22 雙軌蒐證與引導提問》v0.7 製作，內容未增刪規則。本頁是設計，不是成果；欄位填滿不等於學生已有成長。</footer>
+</main>
+
+<button class="fab" id="openSpine" aria-haspopup="dialog">主幹與界線</button>
+<dialog id="spine" aria-labelledby="spT">
+  <button class="close" id="closeSpine">關閉</button>
+  <h3 id="spT">一條主幹，一次只接一件事</h3>
+  
+<ol class="spine">
+ <li><b>接事件</b>「剛才哪一件事，你需要決定怎麼做？」</li>
+ <li><b>還原決策與行動</b>「你注意到什麼？怎麼決定？自己做了哪一步，後來怎麼樣？」</li>
+ <li><b>理由與策略</b>「你憑什麼這樣做？從哪個結果看出它有用，或需要改？」</li>
+ <li><b>確認來源</b>「哪個細節或紀錄能讓我們確認？」</li>
+ <li><b>回饋並約下一步</b>「下一次想保留或改哪一步？我怎麼支持你？何時再看？」</li>
+</ol>
+<p class="move"><span class="tag t-m">遷</span>「這件事回到平常，有沒有哪裡像？具體什麼時候會用到？」</p>
+
+  <p>下一問接學生剛說的話。最省力的接法：重複他最後幾個字，變成問句。</p>
+  <h3>三條界線</h3>
+  <ol class="three">
+   <li>訪談資料不能鬆動或補救任何安全判定。</li>
+   <li>談話中出現新的不適、裝備缺失或危險資訊，<strong>立刻停止訪談，交權責人依原程序處理。</strong></li>
+   <li>本梯次不打等第，只蒐證。</li>
+  </ol>
+  <p><b>先安全，再提問。</b>需要專注行進、處理風險、照顧不適或明顯疲憊時，停止訪談。不為補資料製造挑戰、要求重演或增加負荷。</p>
+  <p><b>談完先留五項：</b>事件編號、本人行動與決策、資料來源、涉及的安全結果／處置、下一步與再看時點。</p>
+</dialog>
+
+<script>
+(function(){
+  var d=document, dlg=d.getElementById('spine');
+  d.getElementById('openSpine').addEventListener('click',function(){ if(dlg.showModal) dlg.showModal(); else dlg.setAttribute('open',''); });
+  d.getElementById('closeSpine').addEventListener('click',function(){ if(dlg.close) dlg.close(); else dlg.removeAttribute('open'); });
+  dlg.addEventListener('click',function(e){ if(e.target===dlg && dlg.close) dlg.close(); });
+
+  // 依今天日期標示所在的時間點
+  var n=new Date(), p=function(x){return (x<10?'0':'')+x}, today=n.getFullYear()+'-'+p(n.getMonth()+1)+'-'+p(n.getDate());
+  var key = today<'2026-09-20' ? 'pre' : (today>'2026-09-22' ? 'after' : today);
+  var links=d.querySelectorAll('nav.when a[data-d]');
+  for(var i=0;i<links.length;i++) if(links[i].getAttribute('data-d')===key){ links[i].className='today'; links[i].setAttribute('aria-current','date'); }
+
+  // 從頁內連結跳到卡片時自動展開
+  function openHash(){ var el=location.hash && d.querySelector(location.hash); if(el && el.tagName==='DETAILS') el.open=true; }
+  window.addEventListener('hashchange',openHash); openHash();
+
+  // 複製紀錄卡
+  d.addEventListener('click',function(e){
+    var b=e.target.closest && e.target.closest('.copy'); if(!b) return;
+    var pre=d.getElementById(b.getAttribute('data-t')), txt=pre.textContent;
+    function ok(){ b.textContent='已複製'; setTimeout(function(){b.textContent='複製這張卡'},1600); }
+    function fallback(){ var r=d.createRange(); r.selectNodeContents(pre); var s=getSelection(); s.removeAllRanges(); s.addRange(r);
+      try{ d.execCommand('copy') ? ok() : (b.textContent='已選取，請長按複製'); }catch(_){ b.textContent='已選取，請長按複製'; } }
+    if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok,fallback); else fallback();
+  });
+
+  window.addEventListener('beforeprint',function(){ var a=d.querySelectorAll('details'); for(var i=0;i<a.length;i++) a[i].open=true; });
+})();
+</script>
+</body>
+</html>
